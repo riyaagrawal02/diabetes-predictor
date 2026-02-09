@@ -161,6 +161,7 @@ function Predictpage() {
 
       navigate("/result", { state: data });
     } catch (error) {
+      console.log(error.message);
       alert("Server connection failed");
     } finally {
       setLoading(false);
