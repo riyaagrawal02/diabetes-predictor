@@ -6,6 +6,8 @@ import Predictpage from './pages/Predictpage';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Result from './pages/Result';
+import About from './pages/About';
+import Contact from './pages/Contact';
 
 
 function App() {
@@ -19,8 +21,8 @@ function App() {
         <Route path="/signup" element={<SignUp/>}/>
         <Route path="/predict" element={<Predictpage/>}/>
         <Route path="/result" element={<Result/>}/>
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/about" element={<About/>} />
+        <Route path="/contact" element={<Contact/>} />
       </Routes>
       <Footer/>
     </Router>
