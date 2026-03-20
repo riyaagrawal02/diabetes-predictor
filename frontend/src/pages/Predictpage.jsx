@@ -143,7 +143,7 @@ function Predictpage() {
 
       const token = localStorage.getItem("token");
 
-      const res = await fetch("http://localhost:5000/api/diabetes/predict", {
+      const res = await fetch("https://diabetes-predictor-2-llkg.onrender.com/api/diabetes/predict", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

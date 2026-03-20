@@ -13,7 +13,7 @@ export const DiabetesProvider = ({ children }) => {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/diabetes/predict",
+        "https://diabetes-predictor-2-llkg.onrender.com/api/diabetes/predict",
         data,
         {
           headers: {

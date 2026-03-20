@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
 
   const fetchUser = async (token) => {
     try {
-      const res = await fetch("http://localhost:5000/api/auth", {
+      const res = await fetch("https://diabetes-predictor-2-llkg.onrender.com/api/auth", {
         headers: {
           Authorization: `Bearer ${token}`,
         },

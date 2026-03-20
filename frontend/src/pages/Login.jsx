@@ -17,7 +17,7 @@ function Login() {
     e.preventDefault();
     try {
       const data= {email,password};
-      const response = await axios.post('http://localhost:5000/api/auth/signin', data);
+      const response = await axios.post('https://diabetes-predictor-2-llkg.onrender.com/api/auth/signin', data);
       if(response.status == 200){
         localStorage.setItem('token', response.data.token);
         alert('Signed in successfully');

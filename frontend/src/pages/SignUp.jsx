@@ -20,7 +20,7 @@ function SignUp() {
         e.preventDefault();
         try {
             const data= {name, email, password};
-            const response = await axios.post('http://localhost:5000/api/auth/signup' , data);
+            const response = await axios.post('https://diabetes-predictor-2-llkg.onrender.com/api/auth/signup' , data);
             if(response.status === 201){
                 alert("Signup successful! Please login.")
                 navigate('/login');
