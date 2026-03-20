@@ -1,7 +1,6 @@
 import axios from "axios";
 import Diabetes from "../models/diabetes.js";
 
-// 🔥 PREDICT DIABETES
 export const predictDiabetes = async (req, res) => {
   try {
     // ✅ Auth check
@@ -10,26 +9,21 @@ export const predictDiabetes = async (req, res) => {
         error: "Missing user id in token. Please sign in again."
       });
     }
-
-    // ✅ Debug incoming data
     console.log("REQ BODY:", req.body);
 
     const data = req.body;
 
-    // ✅ Feature list
     const featureNames = [
       "age", "sex", "bmi", "bp",
       "s1", "s2", "s3", "s4", "s5", "s6"
     ];
 
-    // ❌ Invalid body
     if (!data || typeof data !== "object" || Object.keys(data).length === 0) {
       return res.status(400).json({
         error: "Invalid or missing JSON body"
       });
     }
 
-    // ❌ Missing fields
     const missing = featureNames.filter(
       (name) => data[name] === undefined || data[name] === null
     );
@@ -40,7 +34,6 @@ export const predictDiabetes = async (req, res) => {
       });
     }
 
-    // ❌ Non-numeric fields
     const nonNumeric = featureNames.filter(
       (name) => Number.isNaN(Number(data[name]))
     );
@@ -51,7 +44,7 @@ export const predictDiabetes = async (req, res) => {
       });
     }
 
-    // 🔥 Call Python ML API
+    
     const response = await axios.post(
       "http://127.0.0.1:5001/predict",
       data,
@@ -65,7 +58,6 @@ export const predictDiabetes = async (req, res) => {
 
     const parsed = response.data;
 
-    // ❌ ML response validation
     if (
       parsed === null ||
       parsed === undefined ||
@@ -77,7 +69,6 @@ export const predictDiabetes = async (req, res) => {
       });
     }
 
-    // 💾 Save to DB
     const record = new Diabetes({
       ...data,
       prediction: parsed.prediction,
@@ -87,7 +78,6 @@ export const predictDiabetes = async (req, res) => {
 
     await record.save();
 
-    // ✅ Send response
     return res.json(parsed);
 
   } catch (err) {
@@ -100,8 +90,6 @@ export const predictDiabetes = async (req, res) => {
 };
 
 
-
-// 🔥 GET ALL USER RECORDS
 export const getUserRecords = async (req, res) => {
   try {
     if (!req.user?.id) {
@@ -119,9 +107,6 @@ export const getUserRecords = async (req, res) => {
   }
 };
 
-
-
-// 🔥 GET SINGLE RECORD
 export const getRecordById = async (req, res) => {
   try {
     if (!req.user?.id) {

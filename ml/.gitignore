@@ -1,2 +1,4 @@
 diabetes.csv
 venv/
+_pycache_
+model.pkl

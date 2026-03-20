@@ -23,4 +23,4 @@ model.fit(X_train, y_train)
 
 joblib.dump(model, MODEL_PATH)
 
-print("✅ Model trained WITHOUT scaling")
+print("Model trained WITHOUT scaling")
