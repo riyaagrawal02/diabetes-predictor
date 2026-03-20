@@ -5,10 +5,10 @@ import dotenv from 'dotenv';
 import userRouter from './routes/auth.routes.js';
 import diabetesRouter from './routes/diabetes.routes.js'
 
+dotenv.config();
+
 const app = express();
 const PORT = process.env.PORT || 5000;
-
-dotenv.config();
 connectDB();
 
 app.use(cors({
@@ -24,5 +24,5 @@ app.use('/api/auth', userRouter);
 app.use('/api/diabetes', diabetesRouter);
 
 app.listen(PORT, () => {
-    console.log("server is running");
+  console.log("server is running");
 })

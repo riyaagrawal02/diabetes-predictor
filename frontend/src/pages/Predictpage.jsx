@@ -83,13 +83,13 @@ function Predictpage() {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
-  
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) navigate("/login");
   }, []);
 
- 
+
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -155,7 +155,7 @@ function Predictpage() {
       const data = await res.json();
 
       if (!res.ok) {
-        alert(data.message || "Prediction failed");
+        alert(data.error || data.message || "Prediction failed");
         return;
       }
 
@@ -189,11 +189,10 @@ function Predictpage() {
                 value={formData[field.name]}
                 onChange={handleChange}
                 placeholder={field.placeholder}
-                className={`p-3 border rounded-xl focus:ring-2 ${
-                  errors[field.name]
+                className={`p-3 border rounded-xl focus:ring-2 ${errors[field.name]
                     ? "border-red-400 bg-red-50 focus:ring-red-300"
                     : "border-gray-300 focus:ring-emerald-400"
-                }`}
+                  }`}
               />
 
               <p className="text-xs text-gray-400">{field.helper}</p>
@@ -210,11 +209,10 @@ function Predictpage() {
             <button
               type="submit"
               disabled={loading}
-              className={`px-10 py-3 bg-emerald-600 text-white text-lg font-semibold rounded-full shadow-lg transition-all ${
-                loading
+              className={`px-10 py-3 bg-emerald-600 text-white text-lg font-semibold rounded-full shadow-lg transition-all ${loading
                   ? "opacity-60 cursor-not-allowed"
                   : "hover:bg-emerald-700 hover:scale-105 active:scale-95"
-              }`}
+                }`}
             >
               {loading ? "Predicting..." : "Predict Diabetes Risk"}
             </button>

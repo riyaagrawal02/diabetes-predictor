@@ -1,41 +1,38 @@
 import { createContext, useState, useContext } from "react";
+import axios from "axios";
 import { AuthContext } from "./AuthContext";
 
 export const DiabetesContext = createContext();
 
-export const DiabetesProvider = ({children}) =>{
-    const {user} = useContext(AuthContext);
-    const [predictions, setPredictions] = useState([]);
-    const addPrediction  = async (data) =>{
-        if(!user) return;
+export const DiabetesProvider = ({ children }) => {
+  const { user } = useContext(AuthContext);
+  const [predictions, setPredictions] = useState([]);
 
-        const res= await axios('http://localhost:5000/api/diabetes/predict',{
-            method:'POST',
-            headers:{
-                Authorization: `Bearer ${user.token}`
-            },
-            body: JSON.stringify(data)
-        });
-        const newPrediction = await res.json;
-        setPredictions([...predictions, newPrediction]);
-    };
+  const addPrediction = async (data) => {
+    if (!user) return;
 
-    const fetchMyPredictions= async() =>{
-        if(!user){
-            return;
+    try {
+      const res = await axios.post(
+        "http://localhost:5000/api/diabetes/predict",
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
         }
-        const res= await axios('http://localhost:5000/api/diabetes/:id',{
-            headers:{
-                Authorization: `Bearer ${user.token}`
-            }
-        });
+      );
 
-        const data = await res.json();
-        setPredictions(data);
-    };
-    return(
-        <DiabetesContext.Provider value={{predictions, addPrediction,  fetchMyPredictions}}>
-            {children}
-        </DiabetesContext.Provider>
-    )
-}
+      setPredictions((prev) => [...prev, res.data]);
+
+    } catch (error) {
+      console.error(error.response?.data || error.message);
+    }
+  };
+
+  return (
+    <DiabetesContext.Provider value={{ predictions, addPrediction }}>
+      {children}
+    </DiabetesContext.Provider>
+  );
+};
