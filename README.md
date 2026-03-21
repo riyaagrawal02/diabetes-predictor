@@ -71,9 +71,6 @@ cd frontend
 npm start
 ```
 
-Open the app at:
-- http://localhost:3000
-
 ## Usage
 1. Enter the required health attributes (e.g., glucose, BMI, age).
 2. Submit the form to request a prediction.
