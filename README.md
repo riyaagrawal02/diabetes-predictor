@@ -4,22 +4,6 @@ A full-stack machine learning web application that estimates diabetes risk from 
 
 > **Disclaimer:** This project is for educational purposes and is **not** medical advice.
 
-## Table of Contents
-- [Overview](#overview)
-- [Features](#features)
-- [Architecture](#architecture)
-- [Tech Stack](#tech-stack)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [Run Locally](#run-locally)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
-- [Model Details](#model-details)
-- [API Reference](#api-reference)
-- [Contributing](#contributing)
-- [License](#license)
-
 ## Overview
 This project uses a supervised learning model trained on medical data (e.g., glucose, BMI, age) to predict the likelihood of diabetes. Users enter health attributes in the web interface; the frontend calls the backend API, which loads the trained model and returns a prediction.
 
@@ -135,14 +119,6 @@ Response (example):
   "probability": 0.73
 }
 ```
-
-## Contributing
-Contributions are welcome.
-- Fork the repo
-- Create a feature branch: `git checkout -b feature/my-change`
-- Commit changes: `git commit -m "Add my change"`
-- Push to branch: `git push origin feature/my-change`
-- Open a Pull Request
 
 ## License
 Add a license to clarify usage (e.g., MIT). If you already have one, reference it here.
